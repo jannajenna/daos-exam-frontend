@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Montserrat:wght@400;700&display=swap");
+
+:root {
+  /* Fonts */
+  --font-primary: "Oswald", sans-serif;
+  --font-secondary: "Montserrat", sans-serif;
+
+  /* Colors */
+  --color-white: #ffffff;
+  --color-light-gray: #f9f9f9;
+  --color-light-gray-1: #f0f0f0;
+  --color-light-gray-2: #dddddd;
+  --color-gray: #777777;
+  --color-dark-gray: #333333;
+  --color-black: #000000;
+  --color-primary-dark-blue: #353a5d;
+  --color-primary-red: #bf1e2e;
+  --color-accent-yellow: #ff9b19;
+
+  /* Font Sizes */
+  --font-size-h1: 30px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-size-body: 16px;
+  --font-size-small: 14px;
+  --font-size-tiny: 12px;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 14px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Borders */
+  --border-radius: 8px;
+
+  /* Shadows */
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-white);
+  color: var(--color-dark-gray);
+  font-family: var(--font-secondary);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#root {
+  width: 100%;
+}

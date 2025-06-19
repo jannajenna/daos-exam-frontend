@@ -1,0 +1,126 @@
+.page {
+  max-width: 375px;
+  margin: 24px auto;
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-family: var(--font-primary);
+  color: var(--color-primary-dark-blue);
+  margin: 0;
+}
+
+.location {
+  color: var(--color-gray);
+  font-size: var(--font-size-small);
+}
+
+.section {
+  margin-top: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-size: var(--font-size-h3);
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: var(--font-size-body);
+  color: var(--color-dark-gray);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.outlineButton,
+.dangerButton {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.outlineButton {
+  background-color: white;
+  border: 1px solid var(--color-primary-dark-blue);
+  color: var(--color-primary-dark-blue);
+}
+
+.dangerButton {
+  background-color: var(--color-primary-red);
+  color: white;
+  border: none;
+}
+
+.smallButton {
+  font-size: var(--font-size-small);
+  padding: 6px 12px;
+  background-color: white;
+  border: 1px solid var(--color-primary-dark-blue);
+  color: var(--color-primary-dark-blue);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.emptyBox {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.emptyImage {
+  width: 120px;
+  margin: 0 auto 8px;
+}
+
+.noText {
+  font-weight: bold;
+}
+
+.helper {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
+
+.postList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.postCard {
+  background-color: var(--color-light-gray-1);
+  padding: 12px;
+  border-radius: var(--border-radius);
+}
+
+.postTitle {
+  font-weight: bold;
+  margin: 0;
+}
+
+.instrument {
+  font-size: var(--font-size-small);
+  color: var(--color-dark-gray);
+}

@@ -1,0 +1,88 @@
+.page {
+  max-width: 375px;
+  margin: 24px auto;
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-light-gray-2);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-primary);
+  color: var(--color-primary-red);
+}
+
+.meta {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+  margin: 2px 0;
+}
+
+.editButton {
+  margin-top: 12px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid var(--color-primary-dark-blue);
+  color: var(--color-primary-dark-blue);
+  border-radius: var(--border-radius);
+  padding: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.divider {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid var(--color-light-gray-2);
+}
+
+.block {
+  margin-bottom: 0;
+}
+
+.blockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.smallButton {
+  background-color: white;
+  color: var(--color-primary-dark-blue);
+  border: 1px solid var(--color-primary-dark-blue);
+  border-radius: var(--border-radius);
+  padding: 6px 12px;
+  font-size: var(--font-size-small);
+  cursor: pointer;
+}
+
+.list {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+li {
+  background-color: var(--color-light-gray-1);
+  padding: 10px;
+  border-radius: var(--border-radius);
+}
+

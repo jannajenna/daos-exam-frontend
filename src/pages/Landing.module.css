@@ -1,0 +1,82 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  max-width: 375px;
+  margin: 24px auto;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  color: var(--color-primary-red);
+  font-size: var(--font-size-h2);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+  margin: 0;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 300px;
+  margin: 24px 0;
+}
+
+.headline {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h2);
+  color: var(--color-primary-red);
+  margin-bottom: 24px;
+}
+
+.cta {
+  width: 100%;
+}
+
+.text {
+  font-size: var(--font-size-small);
+  margin-bottom: 16px;
+  color: var(--color-dark-gray);
+}
+
+.primaryButton {
+  background-color: var(--color-primary-dark-blue);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.secondaryButton {
+  background-color: white;
+  color: var(--color-primary-dark-blue);
+  font-weight: bold;
+  border: 1px solid var(--color-primary-dark-blue);
+  border-radius: var(--border-radius);
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.divider {
+  font-size: var(--font-size-tiny);
+  color: var(--color-gray);
+  display: block;
+  margin-bottom: 12px;
+}

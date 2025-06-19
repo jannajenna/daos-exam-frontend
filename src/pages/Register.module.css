@@ -1,0 +1,73 @@
+.page {
+  max-width: 375px;
+  margin: 24px auto;
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: var(--font-size-h2);
+  color: var(--color-primary-dark-blue);
+  font-family: var(--font-primary);
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+/* 🧼 No more row-based layout */
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label {
+  font-size: var(--font-size-small);
+  color: var(--color-dark-gray);
+  font-weight: 600;
+}
+
+input,
+textarea {
+  padding: 12px;
+  font-size: var(--font-size-body);
+  border: 1px solid var(--color-light-gray-2);
+  border-radius: var(--border-radius);
+  font-family: var(--font-secondary);
+}
+
+textarea {
+  resize: none;
+}
+
+.error {
+  font-size: var(--font-size-tiny);
+  min-height: 16px; /* ✅ reserve space for error message */
+  color: var(--color-primary-red);
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+button {
+  background-color: var(--color-primary-dark-blue);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px;
+  cursor: pointer;
+  font-size: var(--font-size-body);
+}
