@@ -12,6 +12,9 @@ import EditProfile from './pages/EditProfile';
 import EnsemblePage from './pages/EnsemblePage';
 import CreateEnsemble from './pages/CreateEnsemble';
 import CreatePost from './pages/CreatePost';
+import PostPage from './pages/PostPage';
+import FindPostsPage from './pages/FindPostPage';
+import AllEnsemblesPage from './pages/AllEnsemblesPage';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -73,6 +76,26 @@ const createPostRoute = createRoute({
   component: CreatePost,
 });
 
+//Post page
+const postRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/posts/$id',
+  component: PostPage,
+});
+
+//List of posts
+const findPostsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/posts',
+  component: FindPostsPage,
+});
+
+const allEnsemblesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/ensembles',
+  component: AllEnsemblesPage,
+});
+
 const routeTree = rootRoute.addChildren([
   landingRoute,
   registerRoute,
@@ -81,7 +104,10 @@ const routeTree = rootRoute.addChildren([
   editProfileRoute,
   ensembleRoute,
   createEnsembleRoute,
-  createPostRoute
+  createPostRoute,
+  findPostsRoute,
+  postRoute,
+  allEnsemblesRoute,
 ]);
 
 

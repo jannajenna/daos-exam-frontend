@@ -1,0 +1,46 @@
+.page {
+  max-width: 375px;
+  margin: 24px auto;
+  background-color: var(--color-white);
+  padding: 16px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-family: var(--font-primary);
+  color: var(--color-primary-red);
+  margin-bottom: 8px;
+}
+
+.instrument {
+  font-size: var(--font-size-small);
+  color: var(--color-dark-gray);
+  margin-bottom: 16px;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h2 {
+  font-size: var(--font-size-h3);
+  margin-bottom: 8px;
+}
+
+.text {
+  font-size: var(--font-size-body);
+  color: var(--color-dark-gray);
+}
+
+.primaryButton {
+  background-color: var(--color-primary-dark-blue);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px;
+  cursor: pointer;
+  width: 100%;
+}

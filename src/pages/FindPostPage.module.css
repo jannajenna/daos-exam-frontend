@@ -1,0 +1,54 @@
+.page {
+  max-width: 375px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.title {
+  font-size: var(--font-size-h2);
+  font-family: var(--font-primary);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+  margin-bottom: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.moreButton {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  font-weight: bold;
+  background-color: var(--color-primary-dark-blue);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.sortBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: var(--font-size-small);
+}
+
+.sortBar label {
+  color: var(--color-dark-gray);
+}
+
+.sortBar select {
+  padding: 6px 8px;
+  border: 1px solid var(--color-light-gray-2);
+  border-radius: var(--border-radius);
+  font-family: var(--font-secondary);
+}

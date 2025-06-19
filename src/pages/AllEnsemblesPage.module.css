@@ -1,0 +1,15 @@
+.page {
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.error {
+  color: red;
+  margin: 1rem 0;
+}
+

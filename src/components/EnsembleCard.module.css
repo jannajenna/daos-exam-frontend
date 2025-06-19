@@ -1,0 +1,56 @@
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 12px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  text-decoration: none; /* remove underline */
+}
+
+.card:hover {
+  background-color: var(--color-light-gray-1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ensemble {
+  font-weight: bold;
+  font-size: var(--font-size-body);
+  color: var(--color-primary-red); /* 🔴 red title */
+  margin: 0;
+}
+
+.title {
+  font-size: var(--font-size-body);
+  color: var(--color-primary-dark-blue);
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-small);
+  margin-top: 8px;
+}
+
+.instrument {
+  color: var(--color-primary-dark-blue);
+  font-weight: bold;
+}
+
+.experience {
+  background-color: var(--color-light-gray-2);
+  color: var(--color-dark-gray);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: var(--font-size-tiny);
+}
