@@ -1,0 +1,38 @@
+/* BurgerMenu.module.css */
+
+/* Container for the entire burger menu */
+.menu {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 0.75rem 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Each link or button in the menu */
+.item {
+  font-size: 0.95rem;
+  color: #333;
+  text-decoration: none;
+  background-color: #f3f3f3;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+}
+
+/* Hover state for better interactivity */
+.item:hover {
+  background-color: #e2e2e2;
+  color: #111;
+}
+
+/* Logout button can share the same class but optionally add more rules if needed */
