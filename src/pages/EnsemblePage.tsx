@@ -2,6 +2,7 @@ import { useParams, useNavigate } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import styles from './EnsemblePage.module.css';
 import emptyPostsImg from '../assets/posts-empty@2x.jpg';
+import BurgerMenu from '../components/Menu';
 
 type Ensemble = {
   _id: string;
@@ -57,6 +58,8 @@ const EnsemblePage = () => {
   if (!ensemble) return <p>Indlæser ensemble...</p>;
 
   return (
+     <>
+      <BurgerMenu />
     <main className={styles.page}>
       {/* 🎵 Header */}
       <header className={styles.header}>
@@ -124,6 +127,7 @@ const EnsemblePage = () => {
         )}
       </section>
     </main>
+    </>
   );
 };
 

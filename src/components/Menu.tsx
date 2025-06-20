@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useUser } from '../context/UserContext';
-import styles from './BurgerMenu.module.css';
+import styles from './Menu.module.css';
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);

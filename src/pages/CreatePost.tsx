@@ -2,6 +2,7 @@ import { useNavigate, useParams } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useUser } from '../context/UserContext'; // ✅ Access token from context
 import styles from './CreatePost.module.css';
+import BurgerMenu from '../components/Menu';
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -65,6 +66,8 @@ const CreatePost = () => {
   };
 
   return (
+    <>
+      <BurgerMenu />
     <main className={styles.page}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <h1 className={styles.title}>Opret opslag</h1>
@@ -99,6 +102,7 @@ const CreatePost = () => {
         <button type="submit">Opret opslag</button>
       </form>
     </main>
+    </>
   );
 };
 

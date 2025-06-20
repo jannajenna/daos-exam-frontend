@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import EnsembleCard from '../components/EnsembleCard';
 import styles from './FindPostPage.module.css';
+import BurgerMenu from '../components/Menu';
 
 type Ensemble = {
   _id: string;
@@ -32,6 +33,8 @@ const AllEnsemblesPage = () => {
   }, [sortOrder]);
 
   return (
+    <>
+    <BurgerMenu />
     <main className={styles.page}>
       <h1 className={styles.title}>Find Ensemble</h1>
       <p className={styles.subtitle}>{ensembles.length} ensembler fundet</p>
@@ -55,6 +58,7 @@ const AllEnsemblesPage = () => {
 
       <button className={styles.moreButton}>Se flere</button>
     </main>
+    </>
   );
 };
 

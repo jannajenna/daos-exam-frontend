@@ -2,6 +2,7 @@ import { useNavigate, useParams } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContext';
 import styles from './Register.module.css';
+import BurgerMenu from '../components/Menu';
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -150,6 +151,8 @@ const EditProfile = () => {
   if (loading) return <p>Indlæser profil...</p>;
 
   return (
+     <>
+      <BurgerMenu />
     <main className={styles.page}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <h1 className={styles.title}>Rediger profil</h1>
@@ -210,6 +213,7 @@ const EditProfile = () => {
         <button type="submit">Gem ændringer</button>
       </form>
     </main>
+    </>
   );
 };
 

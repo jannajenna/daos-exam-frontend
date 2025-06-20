@@ -2,6 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useUser } from '../context/UserContext'; // ✅ Access token from context
 import styles from './CreateEnsemble.module.css';
+import BurgerMenu from '../components/Menu';
 
 const CreateEnsemble = () => {
   const navigate = useNavigate();
@@ -65,6 +66,8 @@ const CreateEnsemble = () => {
   };
 
   return (
+    <>
+      <BurgerMenu />
     <main className={styles.page}>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <h1 className={styles.title}>Opret ensemble</h1>
@@ -108,6 +111,7 @@ const CreateEnsemble = () => {
         <button type="submit">Opret ensemble</button>
       </form>
     </main>
+    </>
   );
 };
 

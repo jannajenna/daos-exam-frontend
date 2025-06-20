@@ -2,6 +2,7 @@ import { useParams } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { useUser } from '../context/UserContext'; // ✅ Get logged-in user
 import styles from './PostPage.module.css';
+import BurgerMenu from '../components/Menu';
 
 // Define post structure (matching backend response)
 type Post = {
@@ -80,6 +81,8 @@ const PostPage = () => {
   if (!post) return <p>Indlæser opslag...</p>;
 
   return (
+     <>
+      <BurgerMenu />
     <main className={styles.page}>
       {/* 🎵 Post Title */}
       <h1 className={styles.title}>{post.title}</h1>
@@ -114,6 +117,7 @@ const PostPage = () => {
         {alreadyMember ? 'Du er allerede medlem' : 'Anmod om at deltage'}
       </button>
     </main>
+    </>
   );
 };
 

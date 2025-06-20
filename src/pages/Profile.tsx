@@ -5,6 +5,7 @@ import styles from './Profile.module.css';
 import placeholderImg from '../assets/profile-placeholder.svg';
 import EnsembleCard from '../components/EnsembleCard';
 import PostCard from '../components/PostCard';
+import BurgerMenu from '../components/Menu';
 
 // 🧩 User type based on backend response structure
 type User = {
@@ -67,6 +68,8 @@ const Profile = () => {
   if (!user) return <p>Bruger blev ikke fundet.</p>;
 
   return (
+     <>
+      <BurgerMenu />
     <main className={styles.page}>
       {/* 👤 Header section */}
       <header className={styles.header}>
@@ -171,6 +174,7 @@ const Profile = () => {
         )}
       </section>
     </main>
+    </>
   );
 };
 

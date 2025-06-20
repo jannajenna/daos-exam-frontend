@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PostCard from '../components/PostCard';
 import styles from './FindPostPage.module.css';
+import BurgerMenu from '../components/Menu';
 
 // Type definition for a post
 type Post = {
@@ -55,6 +56,8 @@ const FindPostsPage = () => {
   });
 
   return (
+     <>
+      <BurgerMenu />
     <main className={styles.page}>
       <h1 className={styles.title}>Find Ensemble</h1>
       <p className={styles.subtitle}>{sortedPosts.length} opslag fra ensembler fundet</p>
@@ -89,6 +92,7 @@ const FindPostsPage = () => {
 
       <button className={styles.moreButton}>Se flere</button>
     </main>
+    </>
   );
 };
 
