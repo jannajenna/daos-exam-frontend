@@ -1,61 +1,58 @@
 // src/components/BurgerMenu.tsx
 import { useState } from 'react';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { useUser } from '../context/UserContext';
 import styles from './Menu.module.css';
 
-const BurgerMenu = () => {
+const Menu = () => {
   const [open, setOpen] = useState(false);
   const { user, logout } = useUser();
   const navigate = useNavigate();
 
-  // 🔓 Trigger logout and navigate home
-  const handleLogout = () => {
-    logout();
-    navigate({ to: '/' });
-  };
-
-  // 🔐 Only render menu if user is logged in
-  if (!user) return null;
+  if (!user) return null; // Only show if user is logged in
 
   return (
     <div className={styles.wrapper}>
-      {/* 🍔 Button to toggle menu */}
+      {/* 🍔 Top-right toggle icon */}
       <button
-        className={styles.burgerButton}
         onClick={() => setOpen(!open)}
-        aria-label="Toggle menu"
+        className={styles.toggle}
+        aria-label="Åbn menu"
       >
         ☰
       </button>
 
-      {/* 📋 Slide-out menu */}
+      {/* 📋 Menu overlay when open */}
       {open && (
-        <nav className={styles.menu}>
-          <ul>
-            <li>
-              <Link to={`/profile/${user._id}`} onClick={() => setOpen(false)}>
-                Min profil
-              </Link>
-            </li>
-            <li>
-              <Link to="/ensembles" onClick={() => setOpen(false)}>
-                Ensembler
-              </Link>
-            </li>
-            <li>
-              <Link to="/posts" onClick={() => setOpen(false)}>
-                Opslag
-              </Link>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Log ud</button>
-            </li>
-          </ul>
-        </nav>
+        <div className={styles.overlay}>
+          <nav className={styles.menuBox}>
+            <ul className={styles.menuList}>
+              <li>
+                <button onClick={() => navigate({ to: `/profile/${user._id}` })}>
+                  Min profil
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate({ to: '/ensembles' })}>
+                  Ensembler
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate({ to: '/posts' })}>
+                  Opslag
+                </button>
+              </li>
+              <li>
+                <button onClick={logout} className={styles.logoutButton}>
+                  Log ud
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
       )}
     </div>
   );
 };
 
-export default BurgerMenu;
+export default Menu;

@@ -1,38 +1,74 @@
-/* BurgerMenu.module.css */
-
-/* Container for the entire burger menu */
-.menu {
+/* Overlay that dims the background when menu is open */
+.overlay {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  padding: 0.75rem 1rem;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
+}
+
+/* Menu modal box */
+.menuBox {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 320px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Vertical list of options */
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-/* Each link or button in the menu */
-.item {
-  font-size: 0.95rem;
-  color: #333;
-  text-decoration: none;
-  background-color: #f3f3f3;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  text-align: center;
+/* Button styling inside the menu */
+.menuList button {
+  padding: 12px;
+  border: none;
+  background-color: transparent;
+  color: var(--color-primary-dark-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
-  font-weight: 500;
 }
 
-/* Hover state for better interactivity */
-.item:hover {
-  background-color: #e2e2e2;
-  color: #111;
+/* ✅ Darker gray hover
+.menuList button:hover {
+  background-color: var(--color-gray);
+} */
+
+
+/* Logout uses same style, override here if needed */
+.logoutButton {
+  background-color: transparent;
+  color: var(--color-primary-dark-blue);
 }
 
-/* Logout button can share the same class but optionally add more rules if needed */
+/* Icon toggle button */
+.toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  z-index: 1100;
+  color: var(--color-primary-dark-blue);
+}
+
+/* Wrapper to scope placement */
+.wrapper {
+  position: relative;
+}
