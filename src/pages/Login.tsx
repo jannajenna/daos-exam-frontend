@@ -1,5 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
+import { useUser } from '../context/UserContext'; // ✅ Import context
 import styles from './Login.module.css';
 
 const Login = () => {
@@ -7,6 +8,8 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { setUser, setToken } = useUser(); // ✅ Access context functions
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +22,13 @@ const Login = () => {
 
     if (res.ok) {
       const data = await res.json();
-      // Later: store token/user in context or localStorage
+
+      // ✅ Store token and user in context + localStorage
+      setToken(data.token);
+      setUser(data.user);
+      localStorage.setItem('token', data.token);
+
+      // ✅ Redirect to user profile
       navigate({ to: `/profile/${data.user._id}` });
     } else {
       alert('Login fejlede');
