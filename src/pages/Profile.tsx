@@ -6,13 +6,13 @@ import placeholderImg from '../assets/profile-placeholder.svg';
 import EnsembleCard from '../components/EnsembleCard';
 import PostCard from '../components/PostCard';
 
-// ✅ User type that matches your backend response with populated ensembles and posts
+// 🧩 User type based on backend response structure
 type User = {
   _id: string;
   firstName: string;
   lastName: string;
   profileText?: string;
-    profilePhoto?: string;
+  profilePhoto?: string;
   ensembles: {
     _id: string;
     title: string;
@@ -30,52 +30,47 @@ type User = {
 };
 
 const Profile = () => {
-  const { id } = useParams({ from: '/profile/$id' }); // Get user ID from route
+  const { id } = useParams({ from: '/profile/$id' }); // 🔐 Extract user ID from route
   const navigate = useNavigate();
-  const { user: loggedInUser } = useUser(); // Logged-in user from context
+  const { user: loggedInUser, token } = useUser(); // 🔑 Get logged-in user and token from context
 
-  const [user, setUser] = useState<User | null>(null); // State to hold fetched user
-  const [loading, setLoading] = useState(true); // Loading state for fetch
+  const [user, setUser] = useState<User | null>(null); // 🧠 Local state to store profile being viewed
+  const [loading, setLoading] = useState(true); // ⏳ Show loading while fetching user
 
-  const isOwnProfile = loggedInUser?._id === id; // Check if this is the current user's profile
+  const isOwnProfile = loggedInUser?._id === id; // 🧪 Determine if user is viewing their own profile
 
-  // ✅ Fetch user data from backend
+  // 🔄 Fetch the user data (protected route — requires Authorization header)
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/users/${id}`);
+        console.log("Auth token:", token);
+        const res = await fetch(`http://localhost:3000/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Required for protected route
+          },
+        });
+
         if (!res.ok) throw new Error('Kunne ikke hente brugerdata');
 
         const data = await res.json();
-        setUser(data);
+        setUser(data); // ✅ Save to state
       } catch {
         alert('Noget gik galt ved hentning af profil.');
       } finally {
-        setLoading(false);
+        setLoading(false); // ✅ Stop loading
       }
     };
 
     fetchUser();
-  }, [id]);
+  }, [id, token]);
 
+  // ⏳ Show loading UI
   if (loading) return <p>Indlæser profil...</p>;
   if (!user) return <p>Bruger blev ikke fundet.</p>;
 
-  /*
-  // 🔧 TEMP: Hardcoded user data for development/testing
-  const user: User = {
-    _id: id,
-    firstName: 'Susanne',
-    lastName: 'N',
-    profileText: `Jeg har spillet i 7 år på både musikskole og højskole.`,
-    ensembles: ['Århus Klassisk Ensemble'],
-    posts: ['Violinist søges som afløser'],
-  };
-  */
-
   return (
     <main className={styles.page}>
-      {/* 👤 Header section with avatar and name */}
+      {/* 👤 Header: Profile image, name, info */}
       <header className={styles.header}>
         <img
           src={user.profilePhoto ? `http://localhost:3000${user.profilePhoto}` : placeholderImg}
@@ -92,7 +87,7 @@ const Profile = () => {
         </div>
       </header>
 
-      {/* 🛠 Edit profile button only for own profile */}
+      {/* 🛠 Rediger profil knap kun for eget profil */}
       {isOwnProfile && (
         <button
           className={styles.editButton}
@@ -104,7 +99,7 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 📝 Profile description text */}
+      {/* 📝 Profiltekst */}
       <section className={styles.block}>
         <h3>Profiltekst</h3>
         <p style={{ whiteSpace: 'pre-line' }}>{user.profileText}</p>
@@ -112,7 +107,7 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 🎻 User's ensembles */}
+      {/* 🎻 Mine ensembler */}
       <section className={styles.block}>
         <div className={styles.blockHeader}>
           <h3>Mine ensembler</h3>
@@ -126,6 +121,7 @@ const Profile = () => {
           )}
         </div>
 
+        {/* Empty state or list of ensembles */}
         {user.ensembles.length === 0 ? (
           <p className={styles.helper}>Ingen ensembler endnu</p>
         ) : (
@@ -141,7 +137,7 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 📢 User's posts */}
+      {/* 📢 Mine opslag */}
       <section className={styles.block}>
         <div className={styles.blockHeader}>
           <h3>Mine opslag</h3>
@@ -150,6 +146,7 @@ const Profile = () => {
           )}
         </div>
 
+        {/* Empty state or list of posts */}
         {user.posts.length === 0 ? (
           <p className={styles.helper}>Ingen opslag endnu</p>
         ) : (
@@ -174,4 +171,3 @@ const Profile = () => {
 };
 
 export default Profile;
-

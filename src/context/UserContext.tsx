@@ -1,7 +1,8 @@
 // src/context/UserContext.tsx
-import { createContext, useContext, useState, type ReactNode } from 'react';
 
-// Define the structure of your user object
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+
+// 🧾 Define the shape of a User object coming from the backend
 type User = {
   _id: string;
   email: string;
@@ -13,7 +14,7 @@ type User = {
   ensembles?: string[];
 };
 
-// Define the context value type
+// 📦 Define the shape of the context value that will be shared
 type UserContextType = {
   user: User | null;
   token: string | null;
@@ -22,11 +23,11 @@ type UserContextType = {
   logout: () => void;
 };
 
-// Create the context with default value
+// 🚀 Create the actual context (initially undefined until wrapped in provider)
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-// Export hook for easy access
-// eslint-disable-next-line react-refresh/only-export-components
+// 🔁 Custom hook to access user context anywhere in the app
+// Ensures it's only used inside a <UserProvider>
 export const useUser = () => {
   const context = useContext(UserContext);
   if (!context) {
@@ -35,23 +36,43 @@ export const useUser = () => {
   return context;
 };
 
-// Define the provider component
+// 🧩 The Provider component that wraps your app
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  // State: store the user and token
+  // 🧠 State: store the current user object
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
 
-  // Method: clear user and token
+  // 🔐 State: store the JWT token (try to load from localStorage on init)
+  const [token, setTokenState] = useState<string | null>(null);
+
+  // ✅ Custom setter that also writes to localStorage
+  const setToken = (newToken: string | null) => {
+    setTokenState(newToken);
+    if (newToken) {
+      localStorage.setItem('token', newToken);
+    } else {
+      localStorage.removeItem('token');
+    }
+  };
+
+  // 🧠 On mount, restore token from localStorage if it exists
+  useEffect(() => {
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      setToken(savedToken);
+    }
+  }, []);
+
+  // 🚪 Logout: clear user + token from state and localStorage
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('token');
   };
 
-  // Wrap everything in a Provider
+  // ✅ Provide the context value to children
   return (
     <UserContext.Provider value={{ user, token, setUser, setToken, logout }}>
       {children}
     </UserContext.Provider>
   );
 };
+
