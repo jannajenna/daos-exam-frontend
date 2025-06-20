@@ -1,5 +1,6 @@
 import { useParams } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { useUser } from '../context/UserContext'; // ✅ Get logged-in user
 import styles from './PostPage.module.css';
 
 // Define post structure (matching backend response)
@@ -11,6 +12,7 @@ type Post = {
   ensemble: {
     _id: string;
     title: string;
+    members: string[]; // ✅ Used to check if user already joined
     contactPerson: {
       _id: string;
       firstName: string;
@@ -23,7 +25,9 @@ const PostPage = () => {
   const { id } = useParams({ from: '/posts/$id' });
   const [post, setPost] = useState<Post | null>(null);
 
-  // 🔄 Fetch post details on load
+  const { user: loggedInUser } = useUser(); // ✅ Access user from context
+
+  // 🔄 Fetch post details when the page loads
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -38,6 +42,12 @@ const PostPage = () => {
 
     fetchPost();
   }, [id]);
+
+  // ✅ Make sure the disabled prop gets a true boolean (not null/undefined)
+  const alreadyMember = !!(
+    loggedInUser &&
+    post?.ensemble?.members?.includes(loggedInUser._id)
+  );
 
   // 📥 Handle user request to join ensemble
   const handleJoin = async () => {
@@ -95,9 +105,13 @@ const PostPage = () => {
         </p>
       </section>
 
-      {/* 🔘 Join Button */}
-      <button className={styles.primaryButton} onClick={handleJoin}>
-        Anmod om at deltage
+      {/* 🔘 Join Button – disable if already member */}
+      <button
+        className={styles.primaryButton}
+        onClick={handleJoin}
+        disabled={alreadyMember}
+      >
+        {alreadyMember ? 'Du er allerede medlem' : 'Anmod om at deltage'}
       </button>
     </main>
   );

@@ -15,9 +15,17 @@ import CreatePost from './pages/CreatePost';
 import PostPage from './pages/PostPage';
 import FindPostsPage from './pages/FindPostPage';
 import AllEnsemblesPage from './pages/AllEnsemblesPage';
+import ProtectedRoute from './components/Protectedroute';
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
+});
+
+// create the wrapper route
+const protectedRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  id: 'protected',
+  component: ProtectedRoute,
 });
 
 // Route: /
@@ -41,16 +49,16 @@ const loginRoute = createRoute({
   component: Login,
 });
 
-//Profile page
+//Profile page 
 const profileRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/profile/$id', // TanStack uses $ for route params
   component: Profile,
 });
 
-//Edit profile
+//Edit profile - protected route
 const editProfileRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => protectedRoute, // 🔒 PROTECTED
   path: '/edit-profile/$id',
   component: EditProfile,
 });
@@ -108,6 +116,7 @@ const routeTree = rootRoute.addChildren([
   findPostsRoute,
   postRoute,
   allEnsemblesRoute,
+  protectedRoute,
 ]);
 
 
