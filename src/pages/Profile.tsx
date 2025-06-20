@@ -13,12 +13,12 @@ type User = {
   lastName: string;
   profileText?: string;
   profilePhoto?: string;
-  ensembles: {
+  ensembles?: {
     _id: string;
     title: string;
     posts?: unknown[];
   }[];
-  posts: {
+  posts?: {
     _id: string;
     title: string;
     instrument?: string;
@@ -30,54 +30,51 @@ type User = {
 };
 
 const Profile = () => {
-  const { id } = useParams({ from: '/profile/$id' }); // 🔐 Extract user ID from route
+  const { id } = useParams({ from: '/profile/$id' });
   const navigate = useNavigate();
-  const { user: loggedInUser, token } = useUser(); // 🔑 Get logged-in user and token from context
+  const { user: loggedInUser, token } = useUser();
 
-  const [user, setUser] = useState<User | null>(null); // 🧠 Local state to store profile being viewed
-  const [loading, setLoading] = useState(true); // ⏳ Show loading while fetching user
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const isOwnProfile = loggedInUser?._id === id; // 🧪 Determine if user is viewing their own profile
+  const isOwnProfile = loggedInUser?._id === id;
 
-  // 🔄 Fetch the user data (protected route — requires Authorization header)
+  // 🔄 Fetch user profile with token (protected route)
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        console.log("Auth token:", token);
         const res = await fetch(`http://localhost:3000/users/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`, // ✅ Required for protected route
+            Authorization: `Bearer ${token}`,
           },
         });
 
         if (!res.ok) throw new Error('Kunne ikke hente brugerdata');
 
         const data = await res.json();
-        setUser(data); // ✅ Save to state
+        setUser(data);
       } catch {
         alert('Noget gik galt ved hentning af profil.');
       } finally {
-        setLoading(false); // ✅ Stop loading
+        setLoading(false);
       }
     };
 
     fetchUser();
   }, [id, token]);
 
-  // ⏳ Show loading UI
   if (loading) return <p>Indlæser profil...</p>;
   if (!user) return <p>Bruger blev ikke fundet.</p>;
 
   return (
     <main className={styles.page}>
-      {/* 👤 Header: Profile image, name, info */}
+      {/* 👤 Header section */}
       <header className={styles.header}>
         <img
           src={user.profilePhoto ? `http://localhost:3000${user.profilePhoto}` : placeholderImg}
           alt="Profil"
           className={styles.avatar}
         />
-
         <div>
           <h2 className={styles.name}>
             {user.firstName} {user.lastName}
@@ -87,7 +84,7 @@ const Profile = () => {
         </div>
       </header>
 
-      {/* 🛠 Rediger profil knap kun for eget profil */}
+      {/* 🛠 Edit button */}
       {isOwnProfile && (
         <button
           className={styles.editButton}
@@ -99,7 +96,7 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 📝 Profiltekst */}
+      {/* 📝 Profile Text */}
       <section className={styles.block}>
         <h3>Profiltekst</h3>
         <p style={{ whiteSpace: 'pre-line' }}>{user.profileText}</p>
@@ -107,7 +104,7 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 🎻 Mine ensembler */}
+      {/* 🎻 Ensembles Section */}
       <section className={styles.block}>
         <div className={styles.blockHeader}>
           <h3>Mine ensembler</h3>
@@ -116,13 +113,12 @@ const Profile = () => {
               className={styles.smallButton}
               onClick={() => navigate({ to: '/ensembles/create' })}
             >
-              Opret
+              Opret ensemble
             </button>
           )}
         </div>
 
-        {/* Empty state or list of ensembles */}
-        {user.ensembles.length === 0 ? (
+        {!user.ensembles || user.ensembles.length === 0 ? (
           <p className={styles.helper}>Ingen ensembler endnu</p>
         ) : (
           <ul className={styles.list}>
@@ -137,17 +133,25 @@ const Profile = () => {
 
       <hr className={styles.divider} />
 
-      {/* 📢 Mine opslag */}
+      {/* 📢 Posts Section */}
       <section className={styles.block}>
         <div className={styles.blockHeader}>
           <h3>Mine opslag</h3>
-          {isOwnProfile && (
-            <button className={styles.smallButton}>Opret</button>
+
+          {/* ✅ Show Opret opslag only if user owns the profile and has at least 1 ensemble */}
+          {isOwnProfile && user.ensembles && user.ensembles.length > 0 && (
+            <button
+              className={styles.smallButton}
+              onClick={() =>
+                navigate({ to: `/ensembles/${user.ensembles![0]._id}/create-post` })
+              }
+            >
+              Opret opslag
+            </button>
           )}
         </div>
 
-        {/* Empty state or list of posts */}
-        {user.posts.length === 0 ? (
+        {!user.posts || user.posts.length === 0 ? (
           <p className={styles.helper}>Ingen opslag endnu</p>
         ) : (
           <ul className={styles.list}>
